@@ -53,7 +53,6 @@ char* get_exe(char* command){
         }
         closedir(dir);
     }
-    fprintf(stderr, "vdsh: %s: Command Not Found\n", command);
     return "cnf";
 }
 
