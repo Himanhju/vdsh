@@ -1,0 +1,2 @@
+char *PATH;
+char *PWD;

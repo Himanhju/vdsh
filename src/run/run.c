@@ -2,13 +2,11 @@
 #include <dirent.h>
 #include <string.h>
 
-#include "../globals.h"
+#include "../global/global.h"
+#include "run.h"
 
 char* get_exe(char* command){
-    if(PATH == NULL){
-        fprintf(stderr,"Could Not Read Enviormental Variable: PATH\n");
-        return 1;
-    }
+    
     int PATH_len = strlen(PATH);
     int numPATH = 0;
     for(int c = 0; c < PATH_len; c++) {if(PATH[c] == ':'){ numPATH++;}}                        //can get full paths in this "for" loop (can also get in next for loop)
@@ -30,14 +28,14 @@ char* get_exe(char* command){
     char curdir[4096]; //4096 is usually the kernel set pathlength
     for(int i = 0; i < numPATH; i++){
         for(int o = 0; 0 < 4096; o++) {curdir[o] = '\0';}
-        for(int c = PATHstarts[i]; c < PATHstarts + PATHlens[i]; c++) {
+        for(int c = PATHstarts[i]; c < PATHstarts[i] + PATHlens[i]; c++) {
             curdir[c - PATHstarts[i]] = PATH[c];
         }
 
         dir = opendir(curdir);
         if (dir == NULL) {
             fprintf(stderr,"Error reading directory: %s\n", curdir);
-            return 2;
+            return NULL;
         }
         while ((entry = readdir(dir)) != NULL) {
             if(strcmp(entry->d_name,command) == 0){
@@ -50,7 +48,7 @@ char* get_exe(char* command){
         closedir(dir);
     }
     fprintf(stderr, "vdsh: %s: Command Not Found\n", command);
-    return 3;
+    return "cnf";
 }
 
 /*

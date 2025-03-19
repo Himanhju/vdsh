@@ -1,2 +1,2 @@
 
-void sh_init(void);
+int sh_init(void);

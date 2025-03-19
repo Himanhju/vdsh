@@ -1,11 +1,19 @@
 #include <string.h>
-
+#include <stdlib.h>
 #include "../globals.h"
 #include "shell.h"
 
 
-void sh_init(void){
+int sh_init(void){
     //ONLY TO BE USED FOR INITIALIZATION OF THE PATH, PWD AND OTHER GLOBAL VARIABLES
+    PATH = calloc(4096, sizeof(char));
+    if(PATH == NULL){
+        return 1;
+    }
+    PWD = calloc(4096, sizeof(char));
+    if(PWD == NULL){
+        return 2;
+    }
     char initPATH[] = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin";
     for(int i = 0; i < strlen("/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"); i++){
         PATH[i] = initPATH[i];
