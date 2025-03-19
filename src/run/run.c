@@ -2,14 +2,18 @@
 #include <dirent.h>
 #include <string.h>
 
-#include "../global/global.h"
+#include "../shell/shell.h"
 #include "run.h"
 
 char* get_exe(char* command){
-    
+    char* PATH = get_PATH();
     int PATH_len = strlen(PATH);
     int numPATH = 0;
-    for(int c = 0; c < PATH_len; c++) {if(PATH[c] == ':'){ numPATH++;}}                        //can get full paths in this "for" loop (can also get in next for loop)
+    for(int c = 0; c < PATH_len; c++) {
+        if(PATH[c] == ':'){
+            numPATH++;
+        }
+    }                        //can get full paths in this "for" loop (can also get in next for loop)
     numPATH++;
     int PATHlens[numPATH];
     int PATHstarts[numPATH];
@@ -27,7 +31,9 @@ char* get_exe(char* command){
     char* file;
     char curdir[4096]; //4096 is usually the kernel set pathlength
     for(int i = 0; i < numPATH; i++){
-        for(int o = 0; 0 < 4096; o++) {curdir[o] = '\0';}
+        for(int o = 0; o < 4096; o++) {
+            curdir[o] = '\0';
+        }
         for(int c = PATHstarts[i]; c < PATHstarts[i] + PATHlens[i]; c++) {
             curdir[c - PATHstarts[i]] = PATH[c];
         }
