@@ -3,9 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "color.h"
+
 #include "shell/shell.h"
-#include "run/run.h"
 #include "misc/misc.h"
 
 int main(int argc, char** argv){
@@ -13,11 +12,14 @@ int main(int argc, char** argv){
         return 1;
     }
     if(argc == 1){
-        // if it is interactive
-    }else if(argv[1][0] == '-' && argv[1][1] == 'c'){
-        char command[strlen(argv[2])];
-        strcpy(command,argv[2]);
-        
+        IShell();
+    }else if(strncmp(argv[1], "-c", 2)){ // if it has vdsh -c "command to run"
+        /*
+        char** spliced = splice(argv[2], ' ');
+        for(int i = 0; i < sqlen(spliced); i++){
+            printf("%s ", spliced[i]);
+        }
+        */
     }
     
     //execve(get_exe("ls"),argv, NULL);

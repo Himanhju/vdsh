@@ -1,11 +1,15 @@
 extern char** returns;
 
-long file_GetSize(const char *filename);
+struct stat file_GetStats(const char *filename);
 
+/*
 
-
-char** splice(char* str);
+char** splice(char* string ,char cha);
 
 
 
 void splice_clean(void);
+
+*/
+
+int sqlen(char** sqr);

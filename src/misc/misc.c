@@ -3,11 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "misc.h"
+
 char** returns;
 
 int numstrs;
 
-struct stat file_GetSize(const char *filename) {
+struct stat file_GetStats(const char *filename) {
   struct stat file_stats;
 
   
@@ -18,7 +20,7 @@ struct stat file_GetSize(const char *filename) {
 
   return file_stats;
 }
-
+/*
 char** splice(char* string ,char cha){
     char str[strlen(string) + 1];
     str[0] = cha;
@@ -65,7 +67,7 @@ void splice_clean(void){
     }
     free(returns);
 }
-
+*/
 int sqlen(char** sqr){
     int args = 0;
     while (sqr[args] != NULL) {

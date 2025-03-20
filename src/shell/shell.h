@@ -31,3 +31,7 @@ char* get_PWD(void);
 *	@returns info about what it returns
 *	@warning warning for the function
 */
+
+int IShell();
+
+char* get_exe(char* command);
